@@ -1,0 +1,13 @@
+### add ticker
+POST http://localhost:8080/company
+Content-Type: application/json
+
+{
+  "ticker" : "QQQ"
+}
+
+### GET get CompanyName
+GET http://localhost:8080/finance/dividend/Apple Inc.
+
+### GET autoComplete Keyword
+GET http://localhost:8080/company/autocomplete?keyword=I
