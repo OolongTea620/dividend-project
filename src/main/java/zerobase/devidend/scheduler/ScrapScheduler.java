@@ -29,11 +29,8 @@ public class ScrapScheduler {
         // 회사마다 배당금 정보를 새로 스크래핑
         for (var company: companies) {
             log.info("scraping scheduler is started ->" + company.getName());
-            ScrapedResult scrapedResult = this.yahooFinanceScraper.scrap(
-                Company.builder()
-                    .name(company.getName())
-                    .ticker(company.getTicker())
-                    .build());
+            ScrapedResult scrapedResult =
+                    this.yahooFinanceScraper.scrap(new Company(company.getTicker(), company.getName()));
             // 데이터 베이스에 없는 경우, 값 저장
             scrapedResult.getDividends().stream()
                 .map(e -> new DividendEntity(company.getId(), e))
