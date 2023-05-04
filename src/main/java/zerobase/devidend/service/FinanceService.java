@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
+
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import zerobase.devidend.model.Company;
 import zerobase.devidend.model.Dividend;
@@ -19,6 +21,12 @@ import zerobase.devidend.persist.entity.DividendEntity;
 public class FinanceService {
     private final CompanyRepository companyRepository;
     private final DividendRepository dividendRepository;
+
+    // 요청이 자주 발생되는 가?
+    // 자주 변경되는 데이터 인가?
+    // 캐싱에 적합한 상황이다.
+
+    @Cacheable(key="#Companyname" , value = "finance")
     public ScrapedResult getDividendByCompanyName(String companyName) {
         //1. 회사명 기준으로 회사 정보를 조회
 

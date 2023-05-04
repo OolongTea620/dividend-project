@@ -49,7 +49,7 @@ public class CompanyService {
         ScrapedResult scrapedResult = this.yahooFinanceScraper.scrap(company);
         // 스크래핑 결과
         CompanyEntity companyEntity = this.companyRepository.save(new CompanyEntity(company));
-        List<DividendEntity> dividendEntities = scrapedResult.getDividendEntities().stream()
+        List<DividendEntity> dividendEntities = scrapedResult.getDividends().stream()
             .map(e -> new DividendEntity(companyEntity.getId(), e))
             .collect(Collectors.toList());
         this.dividendRepository.saveAll(dividendEntities);
