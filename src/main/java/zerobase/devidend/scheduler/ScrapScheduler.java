@@ -27,7 +27,7 @@ public class ScrapScheduler {
     private final Scraper yahooFinanceScraper;
 
     @CacheEvict(value = CacheKey.KEY_FINANCE, allEntries = true) // 스케쥴려가 동작 시 실행
-    @Scheduled(cron= "${scheduler.scrap.yahoo}") //  스케쥴러 실행 어노테이션 -> 대용량 관련해서 Spring Batch 찾아볼 것
+    //@Scheduled(cron= "${scheduler.scrap.yahoo}") //  스케쥴러 실행 어노테이션 -> 대용량 관련해서 Spring Batch 찾아볼 것
     public void yahoofinanceScheduling() {
         // 저장된 회사 목록을 조회
         List<CompanyEntity> companies = this.companyRepository.findAll();

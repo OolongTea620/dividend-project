@@ -11,3 +11,42 @@ GET http://localhost:8080/finance/dividend/Apple Inc.
 
 ### GET autoComplete Keyword
 GET http://localhost:8080/company/autocomplete?keyword=I
+
+### Signup
+POST http://localhost:8080/auth/signup
+Content-Type: application/json
+
+{
+  "username" : "rlafls9596",
+  "password": "admin1234",
+  "roles": ["ROLE_READ,ROLE_WRITE"]
+}
+
+### signUp - no write user
+POST http://localhost:8080/auth/signup
+Content-Type: application/json
+
+{
+  "username" : "user1",
+  "password": "nowrite",
+  "roles": ["ROLE_READ"]
+}
+
+
+### SignIn
+POST http://localhost:8080/auth/signin
+Content-Type: application/json
+
+{
+  "username": "rlafls9596",
+  "password" : "admin1234"
+}
+
+### Write company
+POST http://localhost:8080/company
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX1JFQUQsUk9MRV9XUklURSJdLCJpYXQiOjE2ODMyMDI1ODksImV4cCI6MTY4MzIwNjE4OX0.gKRoClDumRt2Mq8rzFvb2zWsVKygWDjFdRykgIqwB6i5HGh_NIo--ObPxmvNTBn7Y1IR0_pdYMzDAXKuUaeanA
+
+{
+  "ticker" : "QQQ"
+}
