@@ -3,10 +3,13 @@ package zerobase.devidend.scheduler;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import zerobase.devidend.model.Company;
 import zerobase.devidend.model.ScrapedResult;
+import zerobase.devidend.model.constants.CacheKey;
 import zerobase.devidend.persist.CompanyRepository;
 import zerobase.devidend.persist.DividendRepository;
 import zerobase.devidend.persist.entity.CompanyEntity;
@@ -15,6 +18,7 @@ import zerobase.devidend.scraper.Scraper;
 
 @Slf4j
 @Component
+@EnableCaching
 @AllArgsConstructor
 public class ScrapScheduler {
 
@@ -22,7 +26,8 @@ public class ScrapScheduler {
     private final DividendRepository dividendRepository;
     private final Scraper yahooFinanceScraper;
 
-    @Scheduled(cron= "${scheduler.scrap.yahoo}")
+    @CacheEvict(value = CacheKey.KEY_FINANCE, allEntries = true) // 스케쥴려가 동작 시 실행
+    @Scheduled(cron= "${scheduler.scrap.yahoo}") //  스케쥴러 실행 어노테이션 -> 대용량 관련해서 Spring Batch 찾아볼 것
     public void yahoofinanceScheduling() {
         // 저장된 회사 목록을 조회
         List<CompanyEntity> companies = this.companyRepository.findAll();
