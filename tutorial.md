@@ -48,4 +48,28 @@ CPU의 코어의 갯수에 따라 유동적으로 설정하는게 좋음
     - Sentinel
     - Cluster
 
-d
+### Spring Security 사용하기 
+
+#### 1.gradle dependency 설정하기
+
+#### 2.AuthConfig class 파일 생성하기
+
+권한명 부여 규칙
+      
+      ROLE_[권한명]
+
+### JWT 사용하기
+
+#### JWT 구조
+
+      Header : 
+      Payload : 사용자, 토큰에 대한 속성 정보 -> 해독가능... 따라서 민감한 개인정보 X 만료시간이 있어야 한다.
+      Signature : 토큰의 유효를 검증
+
+
+### 암호화 알고리즘
+   
+암호화 vs 복호화
+
+대칭키 vs 비대칭키
+
