@@ -9,6 +9,9 @@ Content-Type: application/json
 ### GET get CompanyName
 GET http://localhost:8080/finance/dividend/Apple Inc.
 
+### GET get CompanyName unExists
+GET http://localhost:8080/finance/dividend/AnyThing.
+
 ### GET autoComplete Keyword
 GET http://localhost:8080/company/autocomplete?keyword=I
 
